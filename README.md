@@ -3,3 +3,7 @@ In this game you have to dodge the falling red objects while trying to hit the g
 
 
 Use the arrow keys to move your blue object. Three colored objects will fall from the sky the: Red , Green and yellow. Red ones should be avoided, Green ones give a 500 point one-time bonus, and the Yellow ones will give a 5s immunity to the red objects. You can register and login, and try to beat the global highscore. 
+
+
+
+The main program is in mainFrame.java if you are interested in running it yourself.
