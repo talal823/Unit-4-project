@@ -34,6 +34,9 @@ public class GameLogic {
     long shieldEndTime = 0;//used to signal the end of shield
     final int GOLD_SHIELD_DURATION = 5000;
 
+    String currentUser; // use to check who is the current user and will be null if the user is playing as a guest
+
+
 
 
 
@@ -49,10 +52,9 @@ public class GameLogic {
         score++;
 
         //saving the highscore to the highScoreFile.txt
-        if(score > loadHighScore())
-        {
+        if (currentUser != null && score > highScore) {
             highScore = score;
-            FileManager.saveHighScore(highScore);
+            FileManager.saveUserHighScore(currentUser, score);
         }
 
         //turning shield off if shield end time gets exceeded
@@ -180,3 +182,4 @@ public class GameLogic {
         shieldEndTime = 0;
     }
 }
+
