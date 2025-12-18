@@ -27,4 +27,3 @@ public class MainFrame extends JFrame {
         new MainFrame(); // launch the game
     }
 }
-
