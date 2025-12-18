@@ -2,10 +2,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-public class MenuPanel extends JPanel{
-
-    public MenuPanel(MainFrame window)
-    {
+public class MenuPanel extends JPanel {
+    // Main menu with options to login, register, or play as guest
+    public MenuPanel(MainFrame window) {
         setLayout(null);
 
         JLabel title = new JLabel("Dodge The Falling Objects");
@@ -28,7 +27,6 @@ public class MenuPanel extends JPanel{
         guestBtn.setBounds(200, 350, 200, 50);
         guestBtn.addActionListener((ActionEvent e) -> window.switchPanel(new GamePanel(window)));
         add(guestBtn);
-
-
     }
 }
+
