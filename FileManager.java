@@ -4,7 +4,7 @@ import java.util.HashMap;
 public class FileManager {
     // Handles reading and writing users and high scores
     static String usersFile = "users.txt";
-    static String highScoreFile = "highscore.txt";
+    static String highScoresFile = "highscores.txt";
 
     // Load all saved users into a HashMap
     public static HashMap<String, String> loadUsers() {
@@ -38,30 +38,65 @@ public class FileManager {
         }
     }
 
-    // Load high score
-    public static int loadHighScore() {
+    // Loading user highscores
+    public static int loadUserHighScore(String username) {
         try {
-            File file = new File(highScoreFile);
+            File file = new File(highScoresFile);
             if (!file.exists()) return 0;
-
+    
             BufferedReader br = new BufferedReader(new FileReader(file));
-            int score = Integer.parseInt(br.readLine());
+            String line;
+    
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(":");
+                if (parts.length == 2 && parts[0].equals(username)) {
+                    br.close();
+                    return Integer.parseInt(parts[1]);
+                }
+            }
             br.close();
-            return score;
         } catch (Exception e) {
-            return 0;
+            System.out.println("Error loading high score");
         }
+        return 0;
     }
 
-    // Save new high score
-    public static void saveHighScore(int score) {
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(highScoreFile));
-            bw.write(String.valueOf(score));
-            bw.close();
-        } catch (Exception e) {
-            System.out.println("Error saving high score: " + e.getMessage());
+    //saving a new user high sccore
+    public static void saveUserHighScore(String username, int score) {
+    HashMap<String, Integer> scores = new HashMap<>();
+
+    try {
+        File file = new File(highScoresFile);
+
+        if (file.exists()) {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(":");
+                if (parts.length == 2) {
+                    scores.put(parts[0], Integer.parseInt(parts[1]));
+                }
+            }
+            br.close();
         }
+
+        // update only if higher
+        if (!scores.containsKey(username) || score > scores.get(username)) {
+            scores.put(username, score);
+        }
+
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+        for (String user : scores.keySet()) {
+            bw.write(user + ":" + scores.get(user));
+            bw.newLine();
+        }
+        bw.close();
+
+    } catch (Exception e) {
+        System.out.println("Error saving high score");
     }
 }
+
+}
+
 
