@@ -50,7 +50,7 @@ public class LoginPanel extends JPanel {
 
             // Validate username and password
             if(users.containsKey(username) && users.get(username).equals(password)){
-                window.switchPanel(new GamePanel(window)); // successful login → game panel
+                window.switchPanel(new GamePanel(window, username)); // successful login → game panel
             } else {
                 msgLabel.setText("Invalid username or password!");
             }
@@ -63,3 +63,4 @@ public class LoginPanel extends JPanel {
         add(backBtn);
     }
 }
+
