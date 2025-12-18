@@ -17,17 +17,16 @@ public class MenuPanel extends JPanel {
         add(title);
 
         loginBtn.setBounds(200, 150, 200, 50);
-        loginBtn.addActionListener((ActionEvent e) -> window.switchPanel(new LoginPanel(window)));
+        loginBtn.addActionListener(e -> window.switchPanel(new LoginPanel(window)));
         add(loginBtn);
 
         registerBtn.setBounds(200, 250, 200, 50);
-        registerBtn.addActionListener((ActionEvent e) -> window.switchPanel(new RegisterPanel(window)));
+        registerBtn.addActionListener( e -> window.switchPanel(new RegisterPanel(window)));
         add(registerBtn);
 
         guestBtn.setBounds(200, 350, 200, 50);
-        guestBtn.addActionListener((ActionEvent e) -> window.switchPanel(new GamePanel(window, null)));
+        guestBtn.addActionListener(e -> window.switchPanel(new GamePanel(window, null)));
         add(guestBtn);
     }
 }
-
 
