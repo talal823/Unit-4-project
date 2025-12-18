@@ -63,4 +63,3 @@ public class LoginPanel extends JPanel {
         add(backBtn);
     }
 }
-
