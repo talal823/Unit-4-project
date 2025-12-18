@@ -36,7 +36,7 @@ public class GameLogic {
 
     String currentUser; // use to check who is the current user and will be null if the user is playing as a guest
 
-
+    //consrtuctor 
     public GameLogic(String username) {
         this.currentUser = username;
     
@@ -190,5 +190,6 @@ public class GameLogic {
         shieldEndTime = 0;
     }
 }
+
 
 
