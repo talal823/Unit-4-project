@@ -19,7 +19,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 
     //constructor 
-    public GamePanel(MainFrame window) {
+    public GamePanel(MainFrame window, String username) {
         this.window = window;
 
         //panel setup
@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         addKeyListener(this);
 
         //creating game logic object
-        game = new GameLogic();
+        game = new GameLogic(username);
 
         //initializeing and starting timer(16 mls equates to about 60 fps)
         timer = new Timer(16, this);
@@ -134,3 +134,4 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         requestFocus(); 
     }
 }
+
