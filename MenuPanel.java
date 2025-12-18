@@ -25,8 +25,9 @@ public class MenuPanel extends JPanel {
         add(registerBtn);
 
         guestBtn.setBounds(200, 350, 200, 50);
-        guestBtn.addActionListener((ActionEvent e) -> window.switchPanel(new GamePanel(window)));
+        guestBtn.addActionListener((ActionEvent e) -> window.switchPanel(new GamePanel(window, null)));
         add(guestBtn);
     }
 }
+
 
