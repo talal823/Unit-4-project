@@ -90,7 +90,8 @@ public class GameLogic {
         //only spawning when timer has exceeded 25
         if (spawnTimer > 25) {
 
-            //creating variable to hold ش random value used for spawn x value
+            //creating variable to hold random value used for spawn x value
+            if (width <= 20) return;
             int x = random.nextInt(width - 20);
 
             //this variable holds the random value which decides which object it to be spawned 
@@ -184,6 +185,7 @@ public class GameLogic {
         shieldEndTime = 0;
     }
 }
+
 
 
 
