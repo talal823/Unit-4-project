@@ -173,12 +173,6 @@ public class GameLogic {
         return gameOver;
     }
 
-    //returns the highscore 
-    public int loadHighScore()
-    {
-        highScore = FileManager.loadHighScore();
-        return highScore;
-    }
 
     //restarts the game by resetting all of the values
     public void restartGame() {
@@ -190,6 +184,7 @@ public class GameLogic {
         shieldEndTime = 0;
     }
 }
+
 
 
 
