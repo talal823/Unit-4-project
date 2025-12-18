@@ -2,64 +2,66 @@ import java.io.*;
 import java.util.HashMap;
 
 public class FileManager {
+    // Handles reading and writing users and high scores
     static String usersFile = "users.txt";
     static String highScoreFile = "highscore.txt";
-    
-        //loading users to 
-        public static HashMap<String, String> loadUsers() {
-            HashMap<String, String> users = new HashMap<>();
-            try {
-                File file = new File(usersFile);
-                if (!file.exists()) return users;
 
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String[] parts = line.split(":");
-                    if (parts.length == 2) {
-                        users.put(parts[0], parts[1]);
-                    }
-                }
-                br.close();
-            } catch (Exception e) {
-                System.out.println("Error loading users: " + e.getMessage());
-            }
-                return users; 
-        }
+    // Load all saved users into a HashMap
+    public static HashMap<String, String> loadUsers() {
+        HashMap<String, String> users = new HashMap<>();
+        try {
+            File file = new File(usersFile);
+            if (!file.exists()) return users; // return empty if no file
 
-        //saving new users
-        public static void saveUser(String username, String password) {
-            try {
-                BufferedWriter bw = new BufferedWriter(new FileWriter(usersFile, true));
-                bw.write(username + ":" + password);
-                bw.newLine();
-                bw.close();
-            } catch (Exception e) {
-                System.out.println("Error saving user: " + e.getMessage());
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(":");
+                if (parts.length == 2) users.put(parts[0], parts[1]);
             }
+            br.close();
+        } catch (Exception e) {
+            System.out.println("Error loading users: " + e.getMessage());
         }
+        return users; 
+    }
 
-        public static int loadHighScore() {
-            try {
-                File file = new File(highScoreFile);
-                if (!file.exists()) return 0;
-    
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                int score = Integer.parseInt(br.readLine());
-                br.close();
-                return score;
-            } catch (Exception e) {
-                return 0;
-            }
+    // Save a new user
+    public static void saveUser(String username, String password) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(usersFile, true));
+            bw.write(username + ":" + password);
+            bw.newLine();
+            bw.close();
+        } catch (Exception e) {
+            System.out.println("Error saving user: " + e.getMessage());
         }
+    }
 
-        public static void saveHighScore(int score) {
-            try {
-                BufferedWriter bw = new BufferedWriter(new FileWriter(highScoreFile));
-                bw.write(String.valueOf(score));
-                bw.close();
-            } catch (Exception e) {
-                System.out.println("Error saving high score: " + e.getMessage());
-            }
+    // Load high score
+    public static int loadHighScore() {
+        try {
+            File file = new File(highScoreFile);
+            if (!file.exists()) return 0;
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            int score = Integer.parseInt(br.readLine());
+            br.close();
+            return score;
+        } catch (Exception e) {
+            return 0;
         }
+    }
+
+    // Save new high score
+    public static void saveHighScore(int score) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(highScoreFile));
+            bw.write(String.valueOf(score));
+            bw.close();
+        } catch (Exception e) {
+            System.out.println("Error saving high score: " + e.getMessage());
+        }
+    }
 }
+
