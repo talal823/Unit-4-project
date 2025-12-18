@@ -37,7 +37,15 @@ public class GameLogic {
     String currentUser; // use to check who is the current user and will be null if the user is playing as a guest
 
 
-
+    public GameLogic(String username) {
+        this.currentUser = username;
+    
+        if (username != null) {
+            highScore = FileManager.loadUserHighScore(username);
+        } else {
+            highScore = 0;
+        }
+    }
 
 
     //update method which gets run infinitly, which in turn calls all of the rest of teh methods in this class
@@ -182,4 +190,5 @@ public class GameLogic {
         shieldEndTime = 0;
     }
 }
+
 
