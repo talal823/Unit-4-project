@@ -3,10 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class RegisterPanel extends JPanel{
-
-    public RegisterPanel(MainFrame window)
-    {
+public class RegisterPanel extends JPanel {
+    // Panel to allow new users to register
+    public RegisterPanel(MainFrame window) {
         setLayout(null);
 
         JLabel title = new JLabel("Register");
@@ -14,7 +13,7 @@ public class RegisterPanel extends JPanel{
         JTextField userField = new JTextField();
         JLabel passLabel = new JLabel("Password:");
         JPasswordField passField = new JPasswordField();
-        JLabel msgLabel = new JLabel("");
+        JLabel msgLabel = new JLabel(""); // display messages
         JButton registerBtn = new JButton("Register");
         JButton backBtn = new JButton("Back");
 
@@ -38,11 +37,14 @@ public class RegisterPanel extends JPanel{
         msgLabel.setForeground(Color.RED);
         add(msgLabel);
 
+        // Register button logic
         registerBtn.setBounds(200, 300, 100, 40);
         registerBtn.addActionListener((ActionEvent e) -> {
             String username = userField.getText();
             String password = new String(passField.getPassword());
             HashMap<String,String> users = FileManager.loadUsers();
+
+            // Check if username exists
             if(users.containsKey(username)){
                 msgLabel.setText("Username already exists!");
             } else {
@@ -53,6 +55,7 @@ public class RegisterPanel extends JPanel{
         });
         add(registerBtn);
 
+        // Back button returns to menu
         backBtn.setBounds(320, 300, 100, 40);
         backBtn.addActionListener((ActionEvent e) -> window.switchPanel(new MenuPanel(window)));
         add(backBtn);
