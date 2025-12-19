@@ -4,7 +4,7 @@ public abstract class GameObject {
     // Abstract parent class for all falling objects
     int x, y, width, height;
 
-    GameObject(int x, int y, int w, int h) {
+    public GameObject(int x, int y, int w, int h) {
         this.x = x;
         this.y = y;
         this.width = w;
